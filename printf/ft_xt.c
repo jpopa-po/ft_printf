@@ -12,26 +12,69 @@
 
 #include "ft_printf.h"
 
+int	ft_check(char *num)
+{
+	int	len;
+	int	i;
+	int	j;
+
+	len = ft_strlen(num);
+	i = 0;
+	j = 0;
+	if (len <= 1)
+		return (1);
+	while (num[i] != '\0' && num[j] != '\0')
+	{
+		while (num[i] != '\0' && num[j] != '\0')
+		{
+			if ((num[i] == num[j] && i != j))
+				return (1);
+			if ((num[j] == '+' || num[j] == '-'))
+				return (1);
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	return (0);
+}
+
+void	ft_putnbr_base(unsigned int n, char *base, int *nbr)
+{
+	unsigned int	n_len;
+
+	if (ft_check(base) == 0)
+	{
+		n_len = ft_strlen(base);
+		if (n < 0)
+		{
+			*nbr += write(1, "-", 1);
+			ft_putnbr_base(-n, base, nbr);
+		}
+		else if (n >= n_len)
+			ft_putnbr_base(n / n_len, base, nbr);
+		*nbr += ft_putchar(base[n % n_len]);
+	}
+}
+
 int	ft_xt(va_list ap)
 {
-	unsigned int long	n;
-	int					x;
+	unsigned int	x;
+	int				num;
 
-	x = 0;
-	n = va_arg(ap, unsigned long int);
-	if (n == 18446744073709551615U)
-	{
-		return ((ft_putstr("0xffffffffffffffff")));
-	}
-	if (n == 2147483648)
-	{
-		return ((ft_putstr("0x80000000")));
-	}
-	if (n == 0)
-	{
-		x += 1;
-		ft_putchar('0');
-	}
-	ft_itohx(n, 0, &x);
-	return (x);
+	num = 0;
+	x = va_arg(ap, unsigned int);
+	ft_putnbr_base(x, "0123456789abcdef", &num);
+	return (num);
+}
+
+int	ft_Xxt(va_list ap)
+{
+	unsigned int	x;
+	int				n;
+
+	n = 0;
+	x = va_arg(ap, unsigned int);
+	ft_putnbr_base(x, "0123456789ABCDEF", &n);
+	return (n);
 }

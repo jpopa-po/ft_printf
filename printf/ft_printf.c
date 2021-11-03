@@ -33,7 +33,7 @@ int	ft_type(const char *frmt, va_list ap, int *i)
 	if (ptr[*i] == 'p')
 		pos += ft_pt(ap);
 	if (ptr[*i] == '%')
-		ft_putchar('%');
+		pos += ft_putchar('%');
 	free(ptr);
 	ptr = NULL;
 	return (pos);
@@ -61,10 +61,10 @@ int	ft_printf(const char *frmt, ...)
 	}
 	return (pos);
 }
-/*
+
 int	main(void)
 {
-	printf("%d\n", printf(" %p %p ", LONG_MIN, LONG_MAX));
-	printf("%d\n", ft_printf(" %p %p ", LONG_MIN, LONG_MAX));
+	printf("%d\n", printf("%s", "≠ñ"));
+	printf("%d\n", ft_printf("%s", "≠ñ"));
 	return (0);
-}*/
+}

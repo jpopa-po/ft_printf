@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= libftprintf.a
-SRCS	= ft_printf.c  ft_pt.c ft_ct.c ft_idt.c ft_itox.c ft_putchar.c ft_putnbr.c ft_putstr.c ft_putunbr.c ft_st.c ft_strdup.c ft_toupper.c ft_ut.c ft_xt.c ft_Xxt.c
+SRCS	= ft_printf.c  ft_pt.c ft_ct.c ft_idt.c ft_putchar.c ft_putnbr.c ft_putstr.c ft_putunbr.c ft_st.c ft_strdup.c ft_ut.c ft_xt.c
 OBJS	= $(SRCS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
