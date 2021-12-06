@@ -61,10 +61,11 @@ int	ft_printf(const char *frmt, ...)
 	}
 	return (pos);
 }
-
+/*
 int	main(void)
 {
-	printf("%d\n", printf("%s", "≠ñ"));
-	printf("%d\n", ft_printf("%s", "≠ñ"));
+	printf("%d\n", printf(" %p %p ", LONG_MIN, LONG_MAX));
+	printf("%d\n", ft_printf(" %p %p ", LONG_MIN, LONG_MAX));
 	return (0);
 }
+*/
